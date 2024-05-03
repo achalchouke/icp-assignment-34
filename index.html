@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        .list-container{
+            background-color: #ffff33
+;
+            width: 600px;
+            height: 400px;
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-y: scroll;
+        } 
+        .todo-item{
+            background-color: #cccc00;
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 30px;
+            margin: 5px;
+            font-size: 30px;
+            display: flex;
+            align-items: center; 
+        } 
+        .action-container{
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        input[type="text"]{
+            margin: 5px 20px;
+            padding: 10px 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+   <div class="list-container" id="list-container">
+        <div class="todo-item">
+            <input type="checkbox"/>
+            <span>Task1</span>
+        </div>
+        <div class="todo-item">
+            <input type="checkbox"/>
+            <span>Task2</span>
+        </div>
+        <div class="todo-item">
+            <input type="checkbox"/>
+            <span>Task3</span>
+        </div>
+   </div>
+   
+   <div class="action-container">
+       <input type="text" id="input-todo"/>
+       <button onclick="add()">Add</button>
+   </div>
+
+   <script>
+       const todoList = [];
+
+       function add() {
+           const inputElement = document.getElementById("input-todo");
+           const todoText = inputElement.value.trim();
+
+           if (todoText !== "") {
+               todoList.push(todoText);
+               inputElement.value = "";
+               renderToDoList();
+           }
+       }
+
+       function renderToDoList() {
+           const listcontainer = document.getElementById("list-container");
+           listcontainer.innerHTML = "";
+
+           for (const todoItem of todoList) {
+               listcontainer.innerHTML += `<div class="todo-item">
+                   <input type="checkbox"/> 
+                   <span>${todoItem}</span>
+               </div>`;
+           }
+       }
+   </script>
+</body>
+</html>
